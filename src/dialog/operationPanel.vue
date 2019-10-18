@@ -1,10 +1,15 @@
 <template>
-  <div class='operationPanel'>
-    <span class="demonstration">背景色</span>
-    <el-color-picker v-model="color" @change='colorChange'></el-color-picker>
-    <el-button type="primary" @click="closeRotate">closeRotate</el-button>
-    <el-button type="primary" @click="startRotate">startRotate</el-button>
-  </div>
+<el-card class="operationPanel">
+  <el-form ref="form" :model="form" style="float: left;">
+    <el-form-item label="背景色:">
+      <el-color-picker v-model="color" @change='colorChange'></el-color-picker>
+    </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="startRotate">旋转</el-button>
+        <el-button type="primary" @click="closeRotate">停止</el-button>
+      </el-form-item>
+    </el-form>
+</el-card>
 </template>
 
 <script>
@@ -38,8 +43,8 @@ export default {
     z-index: 99;
     height: 300px;
     width: 300px;
-    top: 80px;
-    right: 0px;
+    top: 115px;
+    right: 30px;
     background-color: ghostwhite;
 }
 </style>
