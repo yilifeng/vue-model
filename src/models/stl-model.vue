@@ -1,36 +1,39 @@
 <template slot="preview">
   <div>
     <load-img ref="loading"></load-img>
-    <el-button type="primary" @click="closeRotate">closeRotate</el-button>
-    <el-button type="primary" @click="startRotate">startRotate</el-button>
-    <span class="demonstration">背景色</span>
-    <el-color-picker v-model="color2"></el-color-picker>
     <model-stl
       :src="url"
       :rotation="rotation"
       :position="position"
-      :backgroundColor="color2"
+      :backgroundColor="color"
       @on-load="handleLoad"
       @on-progress="handleProgress"
       @on-error="handleError">
     </model-stl>
+    <operation-panel type='stl'
+      @startRotate="startRotate"
+      @closeRotate="closeRotate"
+      @colorChange="colorChange">
+    </operation-panel>
   </div>
 </template>
 
 <script>
 import Loading from '@/dialog/loading'
+import OperationPanel from '@/dialog/operationPanel'
 export default {
   name: 'stlModel',
   props: ['url'],
   components: {
-    'load-img': Loading
+    'load-img': Loading,
+    'operation-panel': OperationPanel
   },
   data () {
     return {
       hasSelect: false,
       inLoading: true,
       isRotition: true,
-      color2: null,
+      color: null,
       position: {
         x: 1,
         y: -11,
@@ -44,6 +47,9 @@ export default {
     }
   },
   methods: {
+    colorChange (color) {
+      this.color = color
+    },
     handleProgress (e) {
       this.$refs.loading.showLoading(true)
     },
