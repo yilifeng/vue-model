@@ -42,7 +42,7 @@ export default {
       rotation: {
         x: -Math.PI / 3,
         y: 0,
-        z: 0.1
+        z: 0
       }
     }
   },
@@ -60,7 +60,7 @@ export default {
       requestAnimationFrame(this.rotate)
     },
     startRotate () {
-      this.rotation = {x: -Math.PI / 3, y: 0, z: 0.1}
+      this.rotation = {x: -Math.PI / 3, y: 0, z: 0}
       this.position = {x: 1, y: -11, z: 5}
       this.isRotition = true
     },
